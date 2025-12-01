@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api/locations";
+const API_URL = "https://gis-backend-uts.vercel.app/api/locations";
 
 // Inisialisasi map
 const map = L.map("map").setView([-6.9175, 107.6191], 13);
