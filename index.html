@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebGIS - Tambah Lokasi</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="sidebar">
+  <div class="header">
+    <h1><i class="fas fa-map-marked-alt"></i>Simpan Lokasi Anda</h1>
+    <p>Sistem Informasi Geografis</p>
+  </div>
+
+  <div class="section">
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number" id="totalLocations">0</div>
+        <div class="stat-label">Total Lokasi</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="totalCategories">0</div>
+        <div class="stat-label">Kategori</div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3><i class="fas fa-plus-circle"></i> <span id="formTitle">Tambah Lokasi Baru</span></h3>
+      
+      <div id="alertBox" class="alert"></div>
+
+      <div class="coord-display">
+        <p><i class="fas fa-info-circle"></i> Klik pada peta untuk menentukan koordinat</p>
+        <div class="coord-values">
+          <div class="coord-item">
+            <small>Latitude</small>
+            <strong id="latDisplay">-</strong>
+          </div>
+          <div class="coord-item">
+            <small>Longitude</small>
+            <strong id="lngDisplay">-</strong>
+          </div>
+        </div>
+      </div>
+
+      <input type="hidden" id="editId">
+      <input type="hidden" id="lat">
+      <input type="hidden" id="lng">
+
+      <div class="form-group">
+        <label><i class="fas fa-map-pin"></i> Nama Lokasi *</label>
+        <input type="text" id="name" placeholder="Contoh: Kampus Ulbi">
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-tag"></i> Kategori *</label>
+        <select id="category">
+          <option value="">-- Pilih Kategori --</option>
+          <option value="Rumah Sakit">🏥 Rumah Sakit</option>
+          <option value="Sekolah">🏫 Sekolah</option>
+          <option value="Universitas">🎓 Universitas</option>
+          <option value="Restoran">🍽️ Restoran</option>
+          <option value="Taman">🌳 Taman</option>
+          <option value="Museum">🏛️ Museum</option>
+          <option value="Masjid">🕌 Masjid</option>
+          <option value="Kantor">🏢 Kantor</option>
+          <option value="Lainnya">📍 Lainnya</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary" onclick="saveLocation()">
+        <i class="fas fa-save"></i> <span id="btnText">Simpan Lokasi</span>
+      </button>
+    </div>
+
+    <div class="search-filter">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Cari lokasi..." onkeyup="filterLocations()">
+      </div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterByCategory('all')">Semua</button>
+        <button class="filter-btn" onclick="filterByCategory('Rumah Sakit')">Rumah Sakit</button>
+        <button class="filter-btn" onclick="filterByCategory('Sekolah')">Sekolah</button>
+        <button class="filter-btn" onclick="filterByCategory('Restoran')">Restoran</button>
+      </div>
+    </div>
+
+    <div class="location-list" id="locationList">
+      <div class="empty-state">
+        <i class="fas fa-map-marker-alt"></i>
+        <p>Belum ada lokasi tersimpan.<br>Klik pada peta untuk menambah lokasi.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="map"></div>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
